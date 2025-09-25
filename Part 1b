@@ -1,0 +1,11 @@
+import pandas as pd
+df = pd.read_csv('metadata.csv')
+print("DaraFrame Dimensions:", df.shape)
+print("\nData Types:")
+print(df.dtypes)
+important_columns = ['column1', 'column2', 'column3']
+print("\nMissing values in Important Columns:")
+print(df[important_columns].isnull().sum())
+numerical_columns = df.select_dtypes(include=['int64', 'float64']).columns
+print("\nBasic Statistics for Numerical Columns:")
+print(df[numerical_columns].describe())

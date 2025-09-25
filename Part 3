@@ -1,0 +1,14 @@
+import pandas as pd
+df = pd.read_csv('metadata.csv')
+
+top_journals =df['journal'].value_counts().head(10)
+print(top_journals)
+
+import matplotlib.pyplot as plt
+top_journals.plot(kind='bar')
+plt.title('Top 10 Journals Publishing COVID-19 Research')
+plt.xlabel('Journal')
+plt.ylabel('Number of Papers')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.show()

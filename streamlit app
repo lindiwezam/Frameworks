@@ -1,0 +1,30 @@
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#load covid research papers metadata
+df = pd.read_csv('metadata.csv')
+
+#app title and description
+st.titles("COVID-19 DATA Explorer")
+st.write("Simple exploration of COVID-19 research papers")
+
+
+#sample data
+st.header("Sample Data")
+st.write(df.head())
+
+#interactive widgets for data exploration
+st.header("Explore Data")
+year_filter = st.slider("Publication Year", df['publication_year'].min(), df['publication_year'].max())
+filtered_df = df[df['publication_year'] == year_filter]
+
+#display filtered data
+st.write(filtered_df)
+
+
+#visualizations
+st.header("Visualizations")
+fig, ax = plt.subplots()
+ax.hist(filtered_df['publication_year'], bins=10)
+st.pyplot(fig)
